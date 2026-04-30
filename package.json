@@ -1,13 +1,14 @@
 {
   "name": "wbw-smooth-scroll",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
     "fabu": "pnpm run build && pnpm run check && pnpm publish --access public --loglevel verbose",
     "build": "pnpm tsup",
     "check": "pnpm pack --dry-run",
-    "push": "git add . && git commit -m \"update\" && git push"
+    "push": "git add . && git commit -m \"update\" && git push",
+    "pp": "pnpm run push && pnpm run fabu"
   },
   "keywords": [],
   "author": "",

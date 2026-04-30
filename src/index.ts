@@ -1,5 +1,6 @@
+import { Easing } from './easings';
 
-function smoothScrollToElement(element: HTMLElement, duration: number = 500): void {
+function smoothScrollToElement(element: HTMLElement, duration: number = 500, easing: Function = Easing.easeInOutQuad): void {
 	const startPosition = window.scrollY;
 
 	// 获取 scroll-margin-top
@@ -16,12 +17,7 @@ function smoothScrollToElement(element: HTMLElement, duration: number = 500): vo
 		if (startTime === null) startTime = currentTime;
 		const timeElapsed = currentTime - startTime;
 		const progress = Math.min(timeElapsed / duration, 1);
-
-		// easeInOutQuad 缓动
-		const ease = progress < 0.5
-			? 2 * progress * progress
-			: 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
+		const ease = easing(progress);
 		window.scrollTo(0, startPosition + distance * ease);
 
 		if (timeElapsed < duration) {
@@ -33,3 +29,4 @@ function smoothScrollToElement(element: HTMLElement, duration: number = 500): vo
 }
 
 export default smoothScrollToElement;
+export * from './easings';
