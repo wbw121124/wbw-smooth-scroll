@@ -1,5 +1,5 @@
 
-function smoothScrollToElement(element, duration = 500) {
+function smoothScrollToElement(element: HTMLElement, duration: number = 500): void {
 	const startPosition = window.scrollY;
 
 	// 获取 scroll-margin-top
@@ -10,9 +10,9 @@ function smoothScrollToElement(element, duration = 500) {
 	const targetPosition = element.getBoundingClientRect().top + window.scrollY - scrollMarginTop;
 	const distance = targetPosition - startPosition;
 
-	let startTime = null;
+	let startTime: any = null;
 
-	function animation(currentTime) {
+	function animation(currentTime: any) {
 		if (startTime === null) startTime = currentTime;
 		const timeElapsed = currentTime - startTime;
 		const progress = Math.min(timeElapsed / duration, 1);
