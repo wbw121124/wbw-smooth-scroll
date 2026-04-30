@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "publish": "pnpm run gitpush ; pnpm run build && pnpm run check && pnpm publish",
+    "publish": "pnpm run gitpush\npnpm run build && pnpm run check && pnpm publish",
     "build": "pnpm tsup",
     "check": "pnpm pack --dry-run",
     "gitpush": "git add . && git commit -m \"update\" && git push"
