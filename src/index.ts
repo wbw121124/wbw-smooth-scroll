@@ -1,6 +1,20 @@
-import { Easing } from './easings';
+/**
+ * @fileoverview 提供各种缓动函数，用于平滑滚动动画
+ * @author wbw121124
+ * @copyright GPL-3.0 License
+ * @version 1.0.0
+ */
 
-function smoothScrollToElement(element: HTMLElement, duration: number = 500, easing: Function = Easing.easeInOutQuad): void {
+import Easings from './easings';
+
+/**
+ * 平滑滚动到指定元素
+ * @param {HTMLElement} element 目标元素
+ * @param {number} [duration=500] 滚动持续时间，默认为 500ms
+ * @param {function(number): number} [easing=Easings.easeInOutQuad] 缓动函数，默认为 `Easings.easeInOutQuad`
+ * @returns {void} 返回值为 `void`
+ */
+function smoothScrollToElement(element: HTMLElement, duration: number = 500, easing: (progress: number) => number = Easings.easeInOutQuad): void {
 	const startPosition = window.scrollY;
 
 	// 获取 scroll-margin-top
@@ -13,6 +27,9 @@ function smoothScrollToElement(element: HTMLElement, duration: number = 500, eas
 
 	let startTime: any = null;
 
+	/**
+	 * 动画函数
+	 */
 	function animation(currentTime: any) {
 		if (startTime === null) startTime = currentTime;
 		const timeElapsed = currentTime - startTime;
@@ -29,4 +46,3 @@ function smoothScrollToElement(element: HTMLElement, duration: number = 500, eas
 }
 
 export default smoothScrollToElement;
-export * from './easings';

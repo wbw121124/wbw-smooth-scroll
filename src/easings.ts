@@ -1,3 +1,13 @@
+/**
+ * @fileoverview 提供各种缓动函数，用于平滑滚动动画
+ * @author wbw121124
+ * @copyright GPL-3.0 License
+ * @version 1.0.0
+ */
+
+/**
+ * 基本缓动函数集合
+ */
 const Easing = {
 	// 线性（无缓动）
 	linear: (t: number) => t,
@@ -23,13 +33,18 @@ const Easing = {
 	easeInOutQuint: (t: number) => t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t,
 };
 
-// 正弦缓动
+/**
+ * 正弦缓动函数
+ */
 const SineEasing = {
 	easeInSine: (t: number) => 1 - Math.cos(t * Math.PI / 2),
 	easeOutSine: (t: number) => Math.sin(t * Math.PI / 2),
 	easeInOutSine: (t: number) => -(Math.cos(Math.PI * t) - 1) / 2,
 };
 
+/**
+ * 指数缓动函数
+ */
 const ExpoEasing = {
 	easeInExpo: (t: number) => t === 0 ? 0 : Math.pow(2, 10 * t - 10),
 	easeOutExpo: (t: number) => t === 1 ? 1 : 1 - Math.pow(2, -10 * t),
@@ -42,6 +57,9 @@ const ExpoEasing = {
 	},
 };
 
+/**
+ * 圆形缓动函数
+ */
 const CircEasing = {
 	easeInCirc: (t: number) => 1 - Math.sqrt(1 - t * t),
 	easeOutCirc: (t: number) => Math.sqrt(1 - (--t) * t),
@@ -50,6 +68,9 @@ const CircEasing = {
 		: (Math.sqrt(1 - 4 * (t - 1) * (t - 1)) + 1) / 2,
 };
 
+/**
+ * 弹性缓动函数
+ */
 const ElasticEasing = {
 	easeInElastic: (t: number) => {
 		if (t === 0) return 0;
@@ -70,6 +91,9 @@ const ElasticEasing = {
 	},
 };
 
+/**
+ * 回弹缓动函数（back）
+ */
 const BackEasing = {
 	easeInBack: (t: number) => {
 		const c1 = 1.70158;
@@ -90,6 +114,9 @@ const BackEasing = {
 	},
 };
 
+/**
+ * 回弹缓动函数（bounce）
+ */
 const BounceEasing = {
 	easeOutBounce: (t: number): number => {
 		const n1 = 7.5625;
@@ -114,4 +141,18 @@ const BounceEasing = {
 		: (1 + BounceEasing.easeOutBounce(2 * t - 1)) / 2,
 };
 
-export { Easing, SineEasing, ExpoEasing, BackEasing, CircEasing, BounceEasing, ElasticEasing };
+/**
+ * 所有缓动函数的集合
+ */
+const Easings = {
+	...Easing,
+	...SineEasing,
+	...ExpoEasing,
+	...CircEasing,
+	...ElasticEasing,
+	...BackEasing,
+	...BounceEasing,
+}
+
+export { Easing, SineEasing, ExpoEasing, BackEasing, CircEasing, BounceEasing, ElasticEasing, Easings };
+export default Easings;
